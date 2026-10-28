@@ -4,4 +4,4 @@ self.addEventListener('activate',e=>{e.waitUntil(caches.keys().then(k=>Promise.a
 self.addEventListener('fetch',e=>{const q=e.request;if(q.method!='GET')return;const u=new URL(q.url);if(u.origin!=location.origin&&!/(^|\.)(fonts\.googleapis\.com|fonts\.gstatic\.com)$/.test(u.hostname))return;
 e.respondWith(caches.open(V).then(c=>c.match(q).then(r=>{
 const n=fetch(q).then(res=>{if(res&&(res.ok||res.type=='opaque'))c.put(q,res.clone());return res}).catch(()=>r||c.match('index.html'));
-return r||n})))});
+return r||n})))})
